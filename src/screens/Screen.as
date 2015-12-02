@@ -8,7 +8,16 @@ package screens
 	 */
 	public class Screen extends MovieClip
 	{
-		[Embed(source = "../../lib/starjedi/Starjedi.ttf",
+		/*[Embed(source = "../../lib/starjedi/Starjedi.ttf",
+		fontName = "jedi", 
+		mimeType = "application/x-font", 
+		fontWeight="normal", 
+		fontStyle="normal", 		
+		advancedAntiAliasing="true", 
+		embedAsCFF = "false")]		
+		private var JediFont:Class;*/
+		
+		[Embed(source = "../../lib/tekst.ttf",
 		fontName = "jedi", 
 		mimeType = "application/x-font", 
 		fontWeight="normal", 
