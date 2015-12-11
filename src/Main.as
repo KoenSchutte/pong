@@ -2,10 +2,12 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.net.SharedObject;
 	import screens.GameOverScreen;
 	import screens.GameScreen;
 	import screens.IntroScreen;
 	import sounds.SoundPlayer;
+	import screens.GameWin;
 	
 	/**
 	 * ...
@@ -17,6 +19,8 @@ package
 		private var introScreen:IntroScreen;
 		private var gameOverScreen:GameOverScreen;
 		private var soundPlayer:SoundPlayer;
+		private var gameWin:GameWin;
+		public var sharedData:SharedObject;
 		
 		public function Main() 
 		{
@@ -29,6 +33,10 @@ package
 			// entry point			
 			soundPlayer = new SoundPlayer(this);
 			buildIntroSreen();	
+			sharedData = SharedObject.getLocal("pong_info")
+			if (sharedData.data.highScore == null) {
+					sharedData.data.highScore = 0;
+			}
 		}
 		private function buildIntroSreen():void
 		{			
@@ -42,6 +50,7 @@ package
 			gameScreen = new GameScreen();
 			addChild(gameScreen);
 			gameScreen.addEventListener(GameScreen.GAME_OVER, onGameOver);
+			gameScreen.addEventListener(GameScreen.GAME_WIN, onGameWin);
 			
 			
 			
@@ -66,6 +75,22 @@ package
 			
 			buildIntroSreen();
 		}
+		
+		 private function onGameWin(e:Event):void 
+  {
+   removeChild(gameScreen);
+   gameScreen.removeEventListener(GameScreen.GAME_WIN, onGameWin);
+      
+   gameWin = new GameWin();
+   addChild(gameWin);
+   gameWin.addEventListener(GameWin.RESET2, onResetWin);
+   
+  }
+ private function onResetWin(e:Event):void{
+  gameWin.removeEventListener(GameWin.RESET2, onResetWin);
+  removeChild(gameWin);
+  buildIntroSreen();
+  }
 		
 	}
 	
