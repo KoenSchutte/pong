@@ -27,7 +27,7 @@ package screens
 		private function init(e:Event):void 
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, init);
-	for (var i:int = 0; i < 5; i++) 
+	for (var i:int = 0; i < 3; i++) 
 	{
 		balls.push(new Ball());
 		addChild(balls[i]);
@@ -46,29 +46,35 @@ package screens
 		addChild(paddles[i]);
 		paddles[i].y = stage.stageHeight / 2;
    } 
-   paddles[0].x = stage.stageWidth - 100;
-   
-   paddles[1].x = 100;
-   
-   scoreboard = new Scoreboard();
-   addChild(scoreboard);
-   
-   this.addEventListener(Event.ENTER_FRAME, loop);
-  }  
+		paddles[0].x = stage.stageWidth - 100;
+	   
+		paddles[1].x = 100;
+	   
+		scoreboard = new Scoreboard();
+		addChild(scoreboard);
+	   
+		this.addEventListener(Event.ENTER_FRAME, loop);
+	}  
   
-  private function loop(e:Event):void 
+	private function loop(e:Event):void 
   {
-   checkCollision();
+	checkCollision();
   } 
-  private function checkCollision():void 
+	private function checkCollision():void 
   {
-   for (var i:int = 0; i < balls.length; i++) 
-   {
+	for (var i:int = 0; i < balls.length; i++) 
+  {
     for (var j:int = 0; j < paddles.length; j++) 
     {
-     if (paddles[j].hitTestObject(balls[i]))
-     {
-      balls[i].xMove *= -1;
+		if (paddles[j].hitTestObject(balls[i]))
+	{
+			balls[i].xMove *= -1;
+			var dir:Number = balls[i].xMove / Math.abs(balls[i].xMove);
+			while (paddles[j].hitTestObject(balls[i]))
+		{
+				balls[i].x += dir;
+							
+	}
       balls[i].x += balls[i].xMove / 2;
       
       dispatchEvent(new Event(BALL_BOUNCE));

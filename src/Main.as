@@ -52,8 +52,6 @@ package
 			gameScreen.addEventListener(GameScreen.GAME_OVER, onGameOver);
 			gameScreen.addEventListener(GameScreen.GAME_WIN, onGameWin);
 			
-			
-			
 		}		
 	
 		private function onGameOver(e:Event):void 
@@ -76,21 +74,21 @@ package
 			buildIntroSreen();
 		}
 		
-		 private function onGameWin(e:Event):void 
-  {
-   removeChild(gameScreen);
-   gameScreen.removeEventListener(GameScreen.GAME_WIN, onGameWin);
-      
-   gameWin = new GameWin();
-   addChild(gameWin);
-   gameWin.addEventListener(GameWin.RESET2, onResetWin);
+		private function onGameWin(e:Event):void 
+		{
+			removeChild(gameScreen);
+			gameScreen.removeEventListener(GameScreen.GAME_WIN, onGameWin);
+				  
+			gameWin = new GameWin();
+			addChild(gameWin);
+			gameWin.addEventListener(GameWin.RESET2, onResetWin);
    
-  }
- private function onResetWin(e:Event):void{
-  gameWin.removeEventListener(GameWin.RESET2, onResetWin);
-  removeChild(gameWin);
-  buildIntroSreen();
-  }
+		}
+		private function onResetWin(e:Event):void{
+			  gameWin.removeEventListener(GameWin.RESET2, onResetWin);
+			  removeChild(gameWin);
+			  buildIntroSreen();
+		}
 		
 	}
 	

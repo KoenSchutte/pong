@@ -18,14 +18,12 @@ package screens
 		public static const RESET2:String = "reset2";
 		public function GameWin() 
 		{	
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			
 		}
 		
 		private function init(e:Event):void 
 		{
-			
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 						
 			title = new TextField();
@@ -55,23 +53,16 @@ package screens
 		}
 		private function reset(e:KeyboardEvent=null):void 
 		{
-			
-
 			if (e == null)
 			{	
-
 				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);
 				dispatchEvent(new Event(RESET2));
 				return;
 			}
 			if (e.keyCode == 32) {	
-
 				stage.removeEventListener(KeyboardEvent.KEY_UP, reset);		
-
 				timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onComplete);
-
 				timer.stop();
-				
 				dispatchEvent(new Event(RESET2));
 	
 				

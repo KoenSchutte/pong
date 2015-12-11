@@ -55,11 +55,10 @@ package actors
 			}
 		}
   
-  public function get maxSpeed():Number
-  {
-		return _maxSpeed;
-		paddles[1].maxSpeed = 20;
-	}
-
+		public function get maxSpeed():Number
+		{
+			return _maxSpeed;
+			paddles[1].maxSpeed = 10;
+		}
 	}
 }
