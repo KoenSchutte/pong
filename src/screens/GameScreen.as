@@ -27,7 +27,7 @@ package screens
 		private function init(e:Event):void 
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, init);
-	for (var i:int = 0; i < 4; i++) 
+	for (var i:int = 0; i < 5; i++) 
 	{
 		balls.push(new Ball());
 		addChild(balls[i]);
